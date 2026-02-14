@@ -73,7 +73,7 @@ router.post("/cadastro-geral", (req, res) => {
     // 2️⃣ cria a pessoa base
     const sqlPessoa = `
       INSERT INTO pessoa (tipo)
-      VALUES ('geral')
+      VALUES ('FISICA')
     `;
 
     db.query(sqlPessoa, (err, resultPessoa) => {
@@ -114,10 +114,12 @@ router.post("/cadastro-geral", (req, res) => {
 
       db.query(sqlCadGeral, valores, (err) => {
         if (err) {
-          return db.rollback(() => {
-            res.status(500).json({ erro: "Erro ao criar cadastro geral" });
-          });
-        }
+  console.error("ERRO NO SQL:", err); // Isso vai aparecer nos logs do Railway
+  return db.rollback(() => {
+    // Isso vai enviar o erro real para o seu 'alert()' no navegador
+    res.status(500).json({ erro: err.code, mensagem: err.sqlMessage });
+  });
+}
 
         // 4️⃣ confirma tudo
         db.commit((err) => {
