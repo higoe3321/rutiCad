@@ -1,34 +1,37 @@
-document.getElementById("formCadGeral").addEventListener("submit", async (e) => {
+document
+  .getElementById("formCadGeral")
+  .addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const nome = document.getElementById("nome").value;
-    const email = document.getElementById("email").value;
-    const telefone = document.getElementById("tel").value;
-    const tipoDocumento = document.getElementById("tipoDocumento").value;
-    const documento = document.getElementById("documento").value;
-    const data = document.getElementById("data").value;
-    const profissao = document.getElementById("profissao").value;
-
-    const cep = document.getElementById("cep").value;
-    const estado = document.getElementById("estado").value;
-    const cidade = document.getElementById("cidade").value;
-    const bairro = document.getElementById("bairro").value;
-    const rua = document.getElementById("rua").value;
-    const numero = document.getElementById("numero").value;
-    const complemento = document.getElementById("comp").value;
-
-    const descricao = document.getElementById("descricao").value;
+    const dados = {
+      id,
+      nome: document.getElementById("nome").value,
+      email: document.getElementById("email").value,
+      telefone: document.getElementById("tel").value,
+      tipoDocumento: document.getElementById("tipoDocumento").value,
+      documento: document.getElementById("documento").value,
+      data: document.getElementById("data").value,
+      profissao: document.getElementById("profissao").value,
+      cep: document.getElementById("cep").value,
+      estado: document.getElementById("estado").value,
+      cidade: document.getElementById("cidade").value,
+      bairro: document.getElementById("bairro").value,
+      rua: document.getElementById("rua").value,
+      numero: document.getElementById("numero").value,
+      complemento: document.getElementById("comp").value,
+      descricao: document.getElementById("descricao").value,
+    };
 
     const resposta = await fetch("/api/cadastro-geral", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ nome, email, telefone, tipoDocumento, documento, data, profissao, cep, estado, cidade, bairro, rua, numero, complemento, descricao})
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dados),
     });
 
     const resultado = await resposta.json();
     alert(resultado.mensagem);
 
-    formCadGeral.reset();
-});
+    document.getElementById("formCadGeral").reset();
+  });
