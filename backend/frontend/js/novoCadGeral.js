@@ -4,7 +4,6 @@ document
     e.preventDefault();
 
     const dados = {
-      id,
       nome: document.getElementById("nome").value,
       email: document.getElementById("email").value,
       telefone: document.getElementById("tel").value,
