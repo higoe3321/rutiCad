@@ -19,7 +19,7 @@ document.getElementById("formCadGeral").addEventListener("submit", async (e) => 
 
     const descricao = document.getElementById("descricao").value;
 
-    const resposta = await fetch("http://localhost:3000/api/cadastro-geral", {
+    const resposta = await fetch("/api/cadastro-geral", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

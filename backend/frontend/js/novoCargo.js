@@ -4,7 +4,7 @@ document.getElementById("formNovoCargo").addEventListener("submit", async (e) =>
     const cargo = document.getElementById("cargo").value;
     const descricao = document.getElementById("descricao").value;
 
-    const resposta = await fetch("http://localhost:3000/api/novoCargo", {
+    const resposta = await fetch("/api/novoCargo", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

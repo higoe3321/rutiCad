@@ -24,7 +24,7 @@ document.getElementById("formEditCadGeral").addEventListener("submit", async (e)
     descricao: document.getElementById("descricao").value
   };
 
-  const resposta = await fetch("http://localhost:3000/api/editCadGeral", {
+  const resposta = await fetch("/api/editCadGeral", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

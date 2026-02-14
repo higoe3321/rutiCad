@@ -6,7 +6,7 @@ document
     const senha = document.getElementById("senha").value;
     const nivel = document.getElementById("nivel").value;
 
-    fetch("http://localhost:3000/api/novoAcesso", {
+    fetch("/api/novoAcesso", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

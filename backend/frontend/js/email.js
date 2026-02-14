@@ -11,7 +11,7 @@ form.addEventListener("submit", async (e) => {
   try {
     // 1️⃣ busca o email no backend
     const resEmail = await fetch(
-      `http://localhost:3000/api/pegar-email/${id}`
+      `/api/pegar-email/${id}`
     );
 
     if (!resEmail.ok) {
@@ -34,7 +34,7 @@ form.addEventListener("submit", async (e) => {
 
     // 2️⃣ envia o email
     const resEnvio = await fetch(
-      "http://localhost:3000/api/enviar-email",
+      "/api/enviar-email",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

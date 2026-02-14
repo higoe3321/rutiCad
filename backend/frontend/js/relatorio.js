@@ -1,7 +1,7 @@
 async function carregarLista() {
   try {
     const resposta = await fetch(
-      "http://localhost:3000/api/relatorio/lista"
+      "/api/relatorio/lista"
     );
     const dados = await resposta.json();
 
@@ -33,7 +33,7 @@ async function carregarLista() {
 async function excluir(id) {
   if (!confirm("Deseja excluir este cadastro?")) return;
 
-  await fetch(`http://localhost:3000/api/relatorio/${id}`, {
+  await fetch(`/api/relatorio/${id}`, {
     method: "DELETE",
   });
 

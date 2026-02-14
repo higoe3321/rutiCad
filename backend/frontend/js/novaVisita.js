@@ -8,7 +8,7 @@ document
     const assunto = document.getElementById("assunto").value;
     const descricao = document.getElementById("descricao").value;
 
-    const resposta = await fetch("http://localhost:3000/api/novaVisita", {
+    const resposta = await fetch("/api/novaVisita", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

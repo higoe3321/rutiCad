@@ -115,7 +115,7 @@
       const params = new URLSearchParams(window.location.search);
       const id = params.get("id");
 
-      fetch(`http://localhost:3000/api/cadastro-geral/${id}`)
+      fetch(`/api/cadastro-geral/${id}`)
         .then((res) => res.json())
         .then((dados) => {
           document.getElementById("nome").value = dados.NOME;
@@ -148,6 +148,6 @@
         const voltar = document.getElementById("voltar");
           voltar.href = `detalhesCadGeral.html?id=${id}`;
     </script>
-    <script src="/frontend/js/editCadGrl.js"></script>
+    <script src="/js/editCadGrl.js"></script>
   </body>
 </html>
