@@ -1,3 +1,6 @@
+console.log("MYSQL_URL:", process.env.MYSQL_URL);
+
+
 const mysql = require("mysql2");
 
 const conexao = mysql.createConnection(process.env.MYSQL_URL);
