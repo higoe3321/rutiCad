@@ -122,10 +122,11 @@ router.post("/cadastro-geral", (req, res) => {
         // 4️⃣ confirma tudo
         db.commit((err) => {
           if (err) {
-            return db.rollback(() => {
-              res.status(500).json({ erro: "Erro ao finalizar transaction" });
-            });
-          }
+  console.error("ERRO NO BANCO:", err); // ISSO VAI MOSTRAR O ERRO REAL NO TERMINAL
+  return db.rollback(() => {
+    res.status(500).json({ erro: err.message }); // Retorna o erro real para o navegador
+  });
+}
 
           res.json({ mensagem: "Cadastro geral salvo com sucesso!" });
         });
