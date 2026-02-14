@@ -8,8 +8,9 @@ const db = require("./db");
 
 //pegar dados do banco para email
 router.get("/pegar-email/:id", (req, res) => {
-  sql = 'SELECT EMAIL, SUBSTRING_INDEX(NOME, " ", 1) AS PRIMEIRO_NOME FROM cadgeral WHERE ID = ?' 
-  
+  sql =
+    'SELECT EMAIL, SUBSTRING_INDEX(NOME, " ", 1) AS PRIMEIRO_NOME FROM cadgeral WHERE ID = ?';
+
   db.query(sql, [req.params.id], (err, results) => {
     if (err) {
       console.error(err);
@@ -25,11 +26,10 @@ const transporter = nodemailer.createTransport({
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
-  }
+  },
 });
 
 router.post("/enviar-email", (req, res) => {
-  
   const email = req.body.email;
   const assunto = req.body.assunto;
   const mensagem = req.body.mensagem;
@@ -38,12 +38,11 @@ router.post("/enviar-email", (req, res) => {
     from: process.env.EMAIL_USER,
     to: email,
     subject: assunto,
-    text: mensagem
+    text: mensagem,
   });
 
   res.json({ ok: true });
 });
-
 
 // cadastro geral
 router.post("/cadastro-geral", (req, res) => {
@@ -88,11 +87,11 @@ router.post("/cadastro-geral", (req, res) => {
 
       // 3️⃣ cria o cadastro geral usando o MESMO ID
       const sqlCadGeral = `
-        INSERT INTO cadgeral
-        (PESSOA_ID, NOME, EMAIL, TELEFONE, TIPOID, DOCUMENTO, DATANASC, PROFISSAO,
-         CEP, ESTADO, CIDADE, BAIRRO, RUA, NUMEROCASA, COMPLEMENTO, DESCRICAO)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-      `;
+  INSERT INTO cadgeral 
+  (ID, NOME, EMAIL, TELEFONE, TIPOID, DOCUMENTO, DATANASC, PROFISSAO, 
+   CEP, ESTADO, CIDADE, BAIRRO, RUA, NUMEROCASA, COMPLEMENTO, DESCRICAO) 
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+`;
 
       const valores = [
         pessoaId,
@@ -150,8 +149,6 @@ router.get("/cadastro-geral/lista", (req, res) => {
     res.json(results);
   });
 });
-
-
 
 //ver detalhes
 
