@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nova Visita</title>
+    <link rel="stylesheet" href="/frontend/css/novoCad.css" />
+  </head>
+  <body>
+    <form action="" id="formNovaVisita">
+      <input type="hidden" name="pessoa_id" id="pessoaIdInput" />
+
+      <div class="dataAssunto">
+        <div>
+          <label for="">Data: </label>
+          <input type="date" name="data" id="data" class="select" />
+        </div>
+
+        <div>
+          <label for="">Assunto: </label>
+          <input type="text" name="assunto" id="assunto" class="linhaAssunto" />
+        </div>
+      </div>
+      <div class="descricao">
+        <h1>Descrição</h1>
+        <textarea
+          name="descricao"
+          id="descricao"
+          rows="20"
+          cols="100"
+        ></textarea>
+      </div>
+
+      <button class="btn" type="submit">Enviar</button>
+    </form>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const pessoaId = params.get("PESSOA_ID");
+
+    </script>
+
+    <script src="/frontend/js/novaVisita.js"></script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhes</title>
+    <link rel="stylesheet" href="/frontend/css/detalhes.css" />
+  </head>
+  <body>
+    <div>
+      <h1 id="nome"></h1>
+      <p id="idPessoa"></p>
+      <p id="email"></p>
+      <p id="telefone"></p>
+      <p id="documento"></p>
+      <p id="dataNacimento"></p>
+      <p id="profissao"></p>
+      <p id="cep"></p>
+      <p id="estado"></p>
+      <p id="cidade"></p>
+      <p id="bairro"></p>
+      <p id="rua"></p>
+      <p id="numero"></p>
+      <p id="complemento"></p>
+      <p id="descricao"></p>
+      <a id="linkNovaVisita" class="btn">Nova Visita</a>
+      <a id="linkEditar" class="btn">Editar</a>
+      <a id="emaill" class="btn">E-maill</a>
+    </div>
+    <a href="cadGeral.html">Voltar</a>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+
+      fetch(`http://localhost:3000/api/cadastro-geral/${id}`)
+        .then((res) => res.json())
+        .then((dados) => {
+          document.getElementById("nome").innerText = "Nome: " + dados.NOME;
+          document.getElementById("idPessoa").innerText =
+            "ID pessoa: " + dados.PESSOA_ID;
+          document.getElementById("email").innerText = "E-mail: " + dados.EMAIL;
+          document.getElementById("telefone").innerText =
+            "Telefone: " + dados.TELEFONE;
+
+          document.getElementById("documento").innerText =
+            "DOCUMENTO: " + dados.TIPOID + " " + dados.DOCUMENTO;
+          if (dados.DATANASC) {
+            const dataFormatada = new Date(dados.DATANASC)
+              .toISOString()
+              .split("T")[0];
+
+            document.getElementById("dataNacimento").innerText =
+              "DATA DE NASCIMENTO: " + dataFormatada;
+          }
+          document.getElementById("profissao").innerText =
+            "Profissão: " + dados.PROFISSAO;
+
+          document.getElementById("cep").innerText = "CEP: " + dados.CEP;
+          document.getElementById("estado").innerText =
+            "ESTADO: " + dados.ESTADO;
+          document.getElementById("cidade").innerText =
+            "CIDADE: " + dados.CIDADE;
+          document.getElementById("bairro").innerText =
+            "BAIRRO: " + dados.BAIRRO;
+          document.getElementById("rua").innerText = "RUA: " + dados.RUA;
+          document.getElementById("numero").innerText =
+            "Nº: " + dados.NUMEROCASA;
+          document.getElementById("complemento").innerText =
+            "COMPLEMENTO: " + dados.COMPLEMENTO;
+
+          document.getElementById("descricao").innerText =
+            "Descrição: " + dados.DESCRICAO;
+
+          const linkEditar = document.getElementById("linkEditar");
+          linkEditar.href = `editarCadastroGeral.html?id=${id}`;
+
+          const link = document.getElementById("linkNovaVisita");
+          link.href = `novaVisita.html?PESSOA_ID=${dados.PESSOA_ID}`;
+          
+          const linkEmail = document.getElementById("emaill");
+          linkEmail.href = `email.html?id=${id}`;
+        });
+    </script>
+  </body>
+</html>

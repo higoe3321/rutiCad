@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acessos</title>
+</head>
+<body>
+    <form id="formAcessos">
+        <label for="usuario">Usuário:</label>
+        <input type="text" id="usuario" name="usuario" required>
+        <br><br>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required>
+        <br><br>
+        <label for="nivel">Nível:</label>
+        <select id="nivel" name="nivel" required>
+            <option value="3">Usuário</option>
+            <option value="2">Moderador</option>
+            <option value="1">Administrador</option>
+        </select>
+        <br><br>
+        <button type="submit">Acessar</button>
+        <a href="index.html">Voltar</a>
+    </form>
+
+    <script src="/frontend/js/novoAcesso.js"></script>
+</body>
+</html>

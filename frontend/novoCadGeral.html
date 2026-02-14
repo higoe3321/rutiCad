@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastros Gerais</title>
+    <link rel="stylesheet" href="/frontend/css/novoCad.css" />
+  </head>
+  <body>
+    <form id="formCadGeral">
+      <div class="dadosPessoais">
+        <h1>Dados Pessoais</h1>
+        <div>
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" class="linha" required/>
+        </div>
+        <div>
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" class="linha" required/>
+        </div>
+        <div>
+          <label for="tel">Telefone:</label>
+          <input type="text" id="tel" class="linha" required/>
+        </div>
+        <div>
+          <select name="documento" id="tipoDocumento" class="select">
+            <option value="CPF">CPF</option>
+            <option value="RG">RG</option>
+            <option value="CNPJ">CNPJ</option>
+          </select>
+          <input type="text" id="documento" class="linha" required/>
+        </div>
+        <div>
+          <label for="data">Data de Nascimento:</label>
+          <input type="date" id="data" class="select" required/>
+        </div>
+        <div>
+          <label for="profissao">Profissão:</label>
+          <input type="text" id="profissao" class="linha" required/>
+        </div>
+      </div>
+      <div class="logradouro">
+        <h1>Logradouro</h1>
+        <div>
+          <label for="cep">CEP:</label>
+          <input type="text" id="cep" class="linha" required/>
+        </div>
+        <div>
+          <label for="estado">Estado:</label>
+          <select id="estado" name="estado" class="select">
+            <option value="AC">AC</option>
+            <option value="AL">AL</option>
+            <option value="AP">AP</option>
+            <option value="AM">AM</option>
+            <option value="BA">BA</option>
+            <option value="CE">CE</option>
+            <option value="DF">DF</option>
+            <option value="ES">ES</option>
+            <option value="GO">GO</option>
+            <option value="MA">MA</option>
+            <option value="MT">MT</option>
+            <option value="MS">MS</option>
+            <option value="MG">MG</option>
+            <option value="PA">PA</option>
+            <option value="PB">PB</option>
+            <option value="PR">PR</option>
+            <option value="PE">PE</option>
+            <option value="PI">PI</option>
+            <option value="RJ">RJ</option>
+            <option value="RN">RN</option>
+            <option value="RS">RS</option>
+            <option value="RO">RO</option>
+            <option value="RR">RR</option>
+            <option value="SC">SC</option>
+            <option value="SP">SP</option>
+            <option value="SE">SE</option>
+            <option value="TO">TO</option>
+          </select>
+        </div>
+        <div>
+          <label for="cidade">Cidade:</label>
+          <input type="text" id="cidade" class="linha" required/>
+        </div>
+        <div>
+          <label for="bairro">Bairro:</label>
+          <input type="text" id="bairro" class="linha" required/>
+        </div>
+        <div>
+          <label for="rua">Rua:</label>
+          <input type="text" id="rua" class="linha" required/>
+          <label for="numero">Nº:</label>
+          <input type="number" id="numero" class="linha" required/>
+        </div>
+        <div>
+          <label for="complemento">Complemento:</label>
+          <input type="text" id="comp" class="linha" required/>
+        </div>
+      </div>
+      <div class="descricao">
+        <h1>Descrição</h1>
+        <textarea
+          name="descricao"
+          id="descricao"
+          rows="20"
+          cols="100"
+         required></textarea>
+      </div>
+      <div class="botao">
+        <button type="submit" class="btn">Enviar</button>
+      </div>
+      <a href="index.html">Voltar</a>
+    </form>
+
+    <script src="/frontend/js/novoCadGeral.js"></script>
+  </body>
+</html>

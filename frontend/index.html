@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+
+    <link rel="manifest" href="/frontend/manifest.json" />
+    <meta name="theme-color" content="#2563eb" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/frontend/css/index.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Painel do Escritório</h1>
+      <p>Gerenciamento de clientes e visitas</p>
+    </header>
+
+    <main class="container">
+      <div class="botoes">
+        <a href="cadGeral.html" class="btn">Cadastros</a>
+        <a href="novoCadGeral.html" class="btn">Novo Cliente</a>
+        <a href="relatorio.html" class="btn">Relatório</a>
+        <a href="novaVisita.html" class="btn">Nova Visita</a>
+        <a href="acessos.html" class="btn">Acessos</a>
+      </div>
+    </main>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/frontend/service-worker.js");
+      }
+    </script>
+  </body>
+</html>

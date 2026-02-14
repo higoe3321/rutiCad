@@ -1,0 +1,123 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* FUNDO */
+body {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: #e5e7eb;
+}
+
+/* CONTAINER */
+body > div {
+  max-width: 1000px;
+  margin: auto;
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* TABELA */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #1e293b;
+}
+
+th,
+td {
+  padding: 14px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+th {
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+td {
+  color: #cbd5f5;
+  border-bottom: 1px solid #1e293b;
+}
+
+/* LINHA HOVER */
+tbody tr:hover {
+  background: rgba(37, 99, 235, 0.08);
+}
+
+/* CHECKBOX */
+input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+/* AÇÕES */
+td a {
+  text-decoration: none;
+  color: #93c5fd;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+td a:hover {
+  text-decoration: underline;
+}
+
+/* BOTÃO EMAIL */
+#btn {
+  display: block;
+  margin: 25px auto 0;
+  background: #2563eb;
+  border: none;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+#btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+}
+
+/* VOLTAR */
+body > a {
+  display: block;
+  margin: 20px auto 0;
+  text-align: center;
+  color: #93c5fd;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+body > a:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVO */
+@media (max-width: 700px) {
+  th:nth-child(3),
+  td:nth-child(3) {
+    display: none; /* esconde email no celular */
+  }
+
+  th,
+  td {
+    padding: 10px;
+  }
+}

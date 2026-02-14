@@ -1,0 +1,99 @@
+/* RESET BÁSICO */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  min-height: 100vh;
+  color: #e5e7eb;
+}
+
+/* CONTAINER */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* FORM */
+.email-form {
+  background: #1e293b;
+  width: 100%;
+  max-width: 520px;
+  padding: 30px;
+  border-radius: 14px;
+  border: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+.email-form h1 {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+/* INPUTS */
+.email-form input,
+.email-form textarea {
+  background: #020617;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.95rem;
+  color: #e5e7eb;
+}
+
+.email-form input::placeholder,
+.email-form textarea::placeholder {
+  color: #9ca3af;
+}
+
+.email-form input:focus,
+.email-form textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb;
+}
+
+/* TEXTO CLIENTE */
+.cliente-label {
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+/* TEXTAREA */
+.email-form textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* BOTÃO */
+.email-form button {
+  margin-top: 10px;
+  background: #2563eb;
+  color: #e5e7eb;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.email-form button:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+}
+
+.email-form button:active {
+  transform: translateY(0);
+}

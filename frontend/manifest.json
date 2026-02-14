@@ -1,0 +1,21 @@
+{
+  "name": "RutiCad",
+  "short_name": "RutiCad",
+  "start_url": "/frontend/index.html",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#2563eb",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/screenshots/RB-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/screenshots/RB-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

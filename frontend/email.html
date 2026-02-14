@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enviar E-mail</title>
+
+  <!-- CSS específico desta página -->
+  <link rel="stylesheet" href="/frontend/css/email.css">
+</head>
+
+<body>
+  <main class="container">
+    <form id="formEmail" class="email-form">
+      <h1>Enviar E-mail</h1>
+
+      <input 
+        type="text" 
+        placeholder="Assunto" 
+        id="assunto" 
+        required 
+      />
+
+      <input 
+        type="text" 
+        placeholder="Saudação (ex: Prezado, Olá)" 
+        id="saudacao" 
+        required 
+      />
+
+      <label class="cliente-label">[NOME DO CLIENTE],</label>
+
+      <textarea 
+        id="mensagem" 
+        placeholder="Digite a mensagem do e-mail..." 
+        required
+      ></textarea>
+
+      <button type="submit">Enviar</button>
+      <a href="cadGeral.html">Voltar</a>
+    </form>
+  </main>
+
+  <script src="js/email.js"></script>
+</body>
+</html>

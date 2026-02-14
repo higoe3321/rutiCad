@@ -1,0 +1,107 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* FUNDO */
+body {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: #e5e7eb;
+}
+
+/* CONTAINER */
+body > div {
+  max-width: 800px;
+  margin: auto;
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 30px;
+  display: grid;
+  gap: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* TÍTULO */
+#assunto {
+  font-size: 1.8rem;
+  color: #f8fafc;
+  border-left: 4px solid #2563eb;
+  padding-left: 12px;
+  margin-bottom: 10px;
+}
+
+/* PESSOA */
+#pessoa {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #93c5fd;
+}
+
+/* CAMPOS */
+p {
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: #cbd5f5;
+}
+
+/* DESCRIÇÃO */
+#descricao {
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+/* BOTÃO EDITAR */
+#linkEditVisita {
+  display: inline-block;
+  margin-top: 15px;
+  text-decoration: none;
+  background: #16a34a;
+  border: 1px solid #16a34a;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+#linkEditVisita:hover {
+  background: #15803d;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.4);
+}
+
+/* VOLTAR */
+body > a {
+  display: block;
+  max-width: 800px;
+  margin: 20px auto 0;
+  text-align: center;
+  color: #93c5fd;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+body > a:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  #assunto {
+    font-size: 1.4rem;
+  }
+
+  #linkEditVisita {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,123 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* FUNDO */
+body {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: #e5e7eb;
+}
+
+/* FORM */
+form {
+  max-width: 800px;
+  margin: auto;
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 30px;
+  display: grid;
+  gap: 25px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* DATA + ASSUNTO */
+.dataAssunto {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 20px;
+}
+
+.dataAssunto label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+  color: #9ca3af;
+}
+
+/* INPUTS */
+.select,
+.linhaAssunto,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.select:focus,
+.linhaAssunto:focus,
+textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+}
+
+/* DESCRIÇÃO */
+.descricao h1 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #f8fafc;
+  border-left: 4px solid #2563eb;
+  padding-left: 10px;
+}
+
+.descricao textarea {
+  resize: vertical;
+  min-height: 180px;
+}
+
+/* BOTÃO */
+.btn {
+  align-self: flex-end;
+  background: #2563eb;
+  border: none;
+  color: #fff;
+  padding: 14px 30px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+}
+
+/* VOLTAR */
+#voltar {
+  display: block;
+  max-width: 800px;
+  margin: 20px auto 0;
+  text-align: center;
+  color: #93c5fd;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+#voltar:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .dataAssunto {
+    grid-template-columns: 1fr;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/frontend/css/detalhesRelat.css">
+  </head>
+  <body>
+    <div>
+      <h1 id="assunto"></h1>
+      <p id="pessoa">RELATÓRIO</p>
+      <p id="data"></p>
+      <p id="descricao"></p>
+      <a id="linkEditVisita">Editar</a>
+    </div>
+
+    <a href="index.html">Voltar</a>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+
+      fetch(`http://localhost:3000/api/relatorio/${id}`)
+        .then((res) => res.json())
+        .then((dados) => {
+          document.getElementById("assunto").innerText =
+            "Assunto: " + dados.ASSUNTO;
+          document.getElementById("pessoa").innerText = dados.NOME;
+          document.getElementById("data").innerText = "Data: " + dados.DATA;
+          document.getElementById("descricao").innerText =
+            "Descrição: " + dados.DESCRICAO;
+        });
+
+        const linkEditVisita = document.getElementById("linkEditVisita");
+        linkEditVisita.href = `editVisitas.html?id=${id}`;
+    </script>
+  </body>
+</html>
