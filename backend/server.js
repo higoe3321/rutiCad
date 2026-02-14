@@ -1,3 +1,5 @@
+console.log("Servidor iniciando...");
+
 require("dotenv").config();
 
 const express = require("express");
@@ -25,6 +27,6 @@ app.use("/api", routes);
 // Porta correta para produção
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
