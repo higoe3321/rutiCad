@@ -20,6 +20,11 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/login.html"));
 });
 
+app.get("/teste", (req, res) => {
+  res.send("Backend funcionando!");
+});
+
+
 // Rotas da API
 const routes = require("./routes.js");
 app.use("/api", routes);
