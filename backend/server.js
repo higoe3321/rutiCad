@@ -13,11 +13,10 @@ app.use(cors());
 app.use(express.json());
 
 // Servir arquivos estáticos do frontend
-app.use(express.static(path.join(__dirname, "../frontend")));
+app.use(express.static(path.join(__dirname, "frontend")));
 
-// Rota principal → abrir login.html
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/login.html"));
+  res.sendFile(path.join(__dirname, "frontend/login.html"));
 });
 
 app.get("/teste", (req, res) => {
