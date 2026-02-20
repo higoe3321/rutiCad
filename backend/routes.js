@@ -8,9 +8,8 @@ const db = require("./db");
 
 //pegar dados do banco para email
 router.get("/pegar-email/:id", (req, res) => {
-  sql =
-    'SELECT EMAIL, SUBSTRING_INDEX(NOME, " ", 1) AS PRIMEIRO_NOME FROM cadgeral WHERE ID = ?';
-
+  sql = 'SELECT EMAIL, SUBSTRING_INDEX(NOME, " ", 1) AS PRIMEIRO_NOME FROM cadgeral WHERE ID = ?' 
+  
   db.query(sql, [req.params.id], (err, results) => {
     if (err) {
       console.error(err);
@@ -26,10 +25,11 @@ const transporter = nodemailer.createTransport({
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
-  },
+  }
 });
 
 router.post("/enviar-email", (req, res) => {
+  
   const email = req.body.email;
   const assunto = req.body.assunto;
   const mensagem = req.body.mensagem;
@@ -38,11 +38,12 @@ router.post("/enviar-email", (req, res) => {
     from: process.env.EMAIL_USER,
     to: email,
     subject: assunto,
-    text: mensagem,
+    text: mensagem
   });
 
   res.json({ ok: true });
 });
+
 
 // cadastro geral
 router.post("/cadastro-geral", (req, res) => {
@@ -87,11 +88,11 @@ router.post("/cadastro-geral", (req, res) => {
 
       // 3️⃣ cria o cadastro geral usando o MESMO ID
       const sqlCadGeral = `
-  INSERT INTO cadgeral 
-  (ID, NOME, EMAIL, TELEFONE, TIPOID, DOCUMENTO, DATANASC, PROFISSAO, 
-   CEP, ESTADO, CIDADE, BAIRRO, RUA, NUMEROCASA, COMPLEMENTO, DESCRICAO) 
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-`;
+        INSERT INTO cadgeral
+        (PESSOA_ID, NOME, EMAIL, TELEFONE, TIPOID, DOCUMENTO, DATANASC, PROFISSAO,
+         CEP, ESTADO, CIDADE, BAIRRO, RUA, NUMEROCASA, COMPLEMENTO, DESCRICAO)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `;
 
       const valores = [
         pessoaId,
@@ -114,21 +115,18 @@ router.post("/cadastro-geral", (req, res) => {
 
       db.query(sqlCadGeral, valores, (err) => {
         if (err) {
-  console.error("ERRO NO SQL:", err); // Isso vai aparecer nos logs do Railway
-  return db.rollback(() => {
-    // Isso vai enviar o erro real para o seu 'alert()' no navegador
-    res.status(500).json({ erro: err.code, mensagem: err.sqlMessage });
-  });
-}
+          return db.rollback(() => {
+            res.status(500).json({ erro: "Erro ao criar cadastro geral" });
+          });
+        }
 
         // 4️⃣ confirma tudo
         db.commit((err) => {
           if (err) {
-  console.error("ERRO NO BANCO:", err); // ISSO VAI MOSTRAR O ERRO REAL NO TERMINAL
-  return db.rollback(() => {
-    res.status(500).json({ erro: err.message }); // Retorna o erro real para o navegador
-  });
-}
+            return db.rollback(() => {
+              res.status(500).json({ erro: "Erro ao finalizar transaction" });
+            });
+          }
 
           res.json({ mensagem: "Cadastro geral salvo com sucesso!" });
         });
@@ -152,6 +150,8 @@ router.get("/cadastro-geral/lista", (req, res) => {
     res.json(results);
   });
 });
+
+
 
 //ver detalhes
 
