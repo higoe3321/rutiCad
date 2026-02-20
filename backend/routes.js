@@ -8,9 +8,8 @@ const db = require("./db");
 
 //pegar dados do banco para email
 router.get("/pegar-email/:id", (req, res) => {
-  sql =
-    'SELECT EMAIL, SUBSTRING_INDEX(NOME, " ", 1) AS PRIMEIRO_NOME FROM cadgeral WHERE ID = ?';
-
+  sql = 'SELECT EMAIL, SUBSTRING_INDEX(NOME, " ", 1) AS PRIMEIRO_NOME FROM cadgeral WHERE ID = ?' 
+  
   db.query(sql, [req.params.id], (err, results) => {
     if (err) {
       console.error(err);
@@ -26,27 +25,29 @@ const transporter = nodemailer.createTransport({
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
-  },
+  }
 });
 
 router.post("/enviar-email", async (req, res) => {
   const { email, assunto, mensagem } = req.body;
-
+console.log("ANTES DE ENVIAR EMAIL");
   try {
     const info = await transporter.sendMail({
       from: `"Sistema" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: assunto,
-      text: mensagem,
+      text: mensagem
     });
 
     console.log("Email enviado:", info.messageId);
     res.json({ ok: true });
+
   } catch (erro) {
     console.error("ERRO AO ENVIAR EMAIL:", erro);
     res.status(500).json({ ok: false, erro: "Falha no envio" });
   }
 });
+
 
 // cadastro geral
 router.post("/cadastro-geral", (req, res) => {
@@ -153,6 +154,8 @@ router.get("/cadastro-geral/lista", (req, res) => {
     res.json(results);
   });
 });
+
+
 
 //ver detalhes
 
