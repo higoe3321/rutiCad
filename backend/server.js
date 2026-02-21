@@ -13,11 +13,12 @@ app.use(cors());
 app.use(express.json());
 
 // Servir arquivos estáticos do frontend
-app.use(express.static(path.join(__dirname, "frontend")));
-
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend/login.html"));
 });
+
+app.use(express.static(path.join(__dirname, "frontend")));
+
 
 app.get("/teste", (req, res) => {
   res.send("Backend funcionando!");
