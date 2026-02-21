@@ -2,7 +2,8 @@ console.log("ROUTES CARREGADAS");
 
 const express = require("express");
 const nodemailer = require("nodemailer");
-
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const router = express.Router();
 const db = require("./db");
 
@@ -22,6 +23,20 @@ router.post("/login", (req, res) => {
     } else {
       res.status(401).json({ mensagem: "Usuário ou senha inválidos", sucesso: false });
     }
+  });
+});
+
+//novo acesso
+router.post("/novoAcesso", (req, res) => {
+  const { usuario, senha, nivel } = req.body;
+  const sql = "INSERT INTO acessos (USUARIO, SENHA, NIVEL) VALUES (?, ?, ?)";
+
+  db.query(sql, [usuario, senha, nivel], (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ mensagem: "Erro ao criar novo acesso" });
+    }
+    res.json({ mensagem: "Novo acesso criado com sucesso!" });
   });
 });
 

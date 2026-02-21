@@ -13,7 +13,7 @@ document
       },
       body: JSON.stringify({
         usuario: usuario,
-        senha: senha,
+        senhaHash: bcrypt.hashSync(senha, 10),
         nivel: nivel,
       }),
     })
