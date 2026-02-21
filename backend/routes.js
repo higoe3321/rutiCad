@@ -312,16 +312,15 @@ router.get("/relatorioCad/:id", (req, res) => {
   const pessoaId = req.params.id;
 
   const sql = `
-    SELECT 
-      v.DATA,
-      v.ASSUNTO,
-      v.DESCRICAO,
-      v.pessoa_id,
-      c.NOME
-    FROM visitas v
-    JOIN cadgeral c ON c.PESSOA_ID = v.pessoa_id
-    WHERE v.pessoa_id = ?
-  `;
+  SELECT 
+    DATE_FORMAT(v.DATA, '%d/%m/%Y') AS DATA,
+    v.ASSUNTO,
+    v.DESCRICAO,
+    c.NOME
+  FROM visitas v
+  JOIN cadgeral c ON c.PESSOA_ID = v.pessoa_id
+  WHERE v.pessoa_id = ?
+`;
 
   db.query(sql, [pessoaId], (err, visitas) => {
     if (err) {
