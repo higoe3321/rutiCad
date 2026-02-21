@@ -26,6 +26,12 @@
       <a id="linkNovaVisita" class="btn">Nova Visita</a>
       <a id="linkEditar" class="btn">Editar</a>
       <a id="emaill" class="btn">E-maill</a>
+
+      <h1 id="assunto"></h1>
+      <p id="pessoa">RELATÓRIO</p>
+      <p id="data"></p>
+      <p id="descricao"></p>
+      <a id="linkEditVisita">Editar</a>
     </div>
     <a href="cadGeral.html">Voltar</a>
 
@@ -75,6 +81,21 @@
 
           document.getElementById("descricao").innerText =
             "Descrição: " + dados.DESCRICAO;
+
+          //mostrar visitas
+          fetch(`/api/relatorio/${id}`)
+            .then((res) => res.json())
+            .then((dados) => {
+              document.getElementById("assunto").innerText =
+                "Assunto: " + dados.ASSUNTO;
+              document.getElementById("pessoa").innerText = dados.NOME;
+              document.getElementById("data").innerText = "Data: " + dados.DATA;
+              document.getElementById("descricao").innerText =
+                "Descrição: " + dados.DESCRICAO;
+            });
+
+          const linkEditVisita = document.getElementById("linkEditVisita");
+          linkEditVisita.href = `editVisitas.html?id=${id}`;
 
           const linkEditar = document.getElementById("linkEditar");
           linkEditar.href = `editarCadastroGeral.html?id=${id}`;

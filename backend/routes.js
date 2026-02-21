@@ -307,6 +307,39 @@ router.get("/relatorio/:id", (req, res) => {
   });
 });
 
+// detalhes relatorio para o detalhe do cadastro geral
+router.get("/relatorioCad/:id", (req, res) => {
+  const sql1 =
+    "SELECT DATA, ASSUNTO, DESCRICAO, pessoa_id FROM visitas WHERE pessoa_id = ?";
+
+  db.query(sql1, [req.params.id], (err, visitas) => {
+    if (err || visitas.length === 0) {
+      return res.status(404).json({ mensagem: "Cadastro não encontrado" });
+    }
+
+    const visita = visitas[0];
+    const pessoaId = visita.pessoa_id;
+
+    // 2️⃣ buscar nome independente da tabela
+    const sql2 = `
+      SELECT NOME FROM cadgeral WHERE PESSOA_ID = ?
+    `;
+
+    db.query(sql2, [pessoaId], (err2, pessoa) => {
+      if (err2 || pessoa.length === 0) {
+        return res.status(404).json({ mensagem: "Pessoa não encontrada" });
+      }
+
+      res.json({
+        DATA: visita.DATA,
+        ASSUNTO: visita.ASSUNTO,
+        DESCRICAO: visita.DESCRICAO,
+        NOME: pessoa[0].NOME,
+      });
+    });
+  });
+});
+
 // editar
 
 //editar cadastro geral
