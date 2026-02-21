@@ -29,24 +29,22 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const { enviarEmail } = require("./gmailService");
+
 router.post("/enviar-email", async (req, res) => {
   const { email, assunto, mensagem } = req.body;
-  console.log("ANTES DE ENVIAR EMAIL");
-  console.log("EMAIL_USER:", process.env.EMAIL_USER);
-  console.log("EMAIL_PASS length:", process.env.EMAIL_PASS?.length);
+
   try {
-    const info = await transporter.sendMail({
-      from: `"Sistema" <${process.env.EMAIL_USER}>`,
+    await enviarEmail({
       to: email,
       subject: assunto,
       text: mensagem,
     });
 
-    console.log("Email enviado:", info.messageId);
     res.json({ ok: true });
-  } catch (erro) {
-    console.error("ERRO AO ENVIAR EMAIL:", erro);
-    res.status(500).json({ ok: false, erro: "Falha no envio" });
+  } catch (err) {
+    console.error("Erro ao enviar email:", err);
+    res.status(500).json({ ok: false });
   }
 });
 
