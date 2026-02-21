@@ -262,7 +262,7 @@ router.post("/novaVisita", (req, res) => {
 
 //relatorio de visitas
 router.get("/relatorio/lista", (req, res) => {
-  const sql = "SELECT ID, DATA, ASSUNTO FROM visitas ORDER BY DATA DESC";
+  const sql = "SELECT ID, DATE_FORMAT(v.DATA, '%d/%m/%Y') AS DATA, ASSUNTO FROM visitas ORDER BY DATA DESC";
 
   db.query(sql, (err, results) => {
     if (err) {
@@ -277,7 +277,7 @@ router.get("/relatorio/lista", (req, res) => {
 // detalhes relatorio
 router.get("/relatorio/:id", (req, res) => {
   const sql1 =
-    "SELECT DATE_FORMAT(v.DATA, '%d/%m/%Y') AS DATA, v.ASSUNTO, v.DESCRICAO, v.pessoa_id FROM visitas WHERE ID = ?";
+    "SELECT DATE_FORMAT(v.DATA, '%d/%m/%Y') AS DATA, ASSUNTO, DESCRICAO, pessoa_id FROM visitas WHERE ID = ?";
 
   db.query(sql1, [req.params.id], (err, visitas) => {
     if (err || visitas.length === 0) {
@@ -406,7 +406,7 @@ router.delete("/cadastro-geral/:id", (req, res) => {
     db.query(sqlBusca, [cadGeralId], (err, rows) => {
       if (err || rows.length === 0) {
         return db.rollback(() =>
-          res.status(404).json({ erro: "Cadastro não encontrado" }),
+          res.status(404).json({ erro: "Cadastro não encontrado" })
         );
       }
 
@@ -416,7 +416,7 @@ router.delete("/cadastro-geral/:id", (req, res) => {
       db.query("DELETE FROM visitas WHERE pessoa_id = ?", [pessoaId], (err) => {
         if (err) {
           return db.rollback(() =>
-            res.status(500).json({ erro: "Erro ao excluir visitas" }),
+            res.status(500).json({ erro: "Erro ao excluir visitas" })
           );
         }
 
@@ -424,7 +424,7 @@ router.delete("/cadastro-geral/:id", (req, res) => {
         db.query("DELETE FROM cadgeral WHERE ID = ?", [cadGeralId], (err) => {
           if (err) {
             return db.rollback(() =>
-              res.status(500).json({ erro: "Erro ao excluir cadastro geral" }),
+              res.status(500).json({ erro: "Erro ao excluir cadastro geral" })
             );
           }
 
@@ -432,16 +432,14 @@ router.delete("/cadastro-geral/:id", (req, res) => {
           db.query("DELETE FROM pessoa WHERE id = ?", [pessoaId], (err) => {
             if (err) {
               return db.rollback(() =>
-                res.status(500).json({ erro: "Erro ao excluir pessoa" }),
+                res.status(500).json({ erro: "Erro ao excluir pessoa" })
               );
             }
 
             db.commit((err) => {
               if (err) {
                 return db.rollback(() =>
-                  res
-                    .status(500)
-                    .json({ erro: "Erro ao finalizar transaction" }),
+                  res.status(500).json({ erro: "Erro ao finalizar transaction" })
                 );
               }
 
