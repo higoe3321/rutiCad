@@ -78,8 +78,12 @@ textarea:focus {
 }
 
 /* BOTÃO */
+.botao {
+  display: flex;
+  justify-content: space-between;
+}
+
 .btn {
-  align-self: flex-end;
   background: #2563eb;
   border: none;
   color: #fff;
