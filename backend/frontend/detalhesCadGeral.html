@@ -23,15 +23,15 @@
       <p id="numero"></p>
       <p id="complemento"></p>
       <p id="descricao"></p>
+
+      <h1 id="assunto"></h1>
+      <p id="dataVisita"></p>
+      <p id="descricaoVisita"></p>
+      <a id="linkEditVisita">Editar</a>
+
       <a id="linkNovaVisita" class="btn">Nova Visita</a>
       <a id="linkEditar" class="btn">Editar</a>
       <a id="emaill" class="btn">E-maill</a>
-
-      <h1 id="assunto"></h1>
-      <p id="pessoa">RELATÓRIO</p>
-      <p id="data"></p>
-      <p id="descricao"></p>
-      <a id="linkEditVisita">Editar</a>
     </div>
     <a href="cadGeral.html">Voltar</a>
 
@@ -88,11 +88,13 @@
             .then((dados) => {
               document.getElementById("assunto").innerText =
                 "Assunto: " + dados.ASSUNTO;
-              document.getElementById("pessoa").innerText = dados.NOME;
-              document.getElementById("data").innerText = "Data: " + dados.DATA;
-              document.getElementById("descricao").innerText =
+              document.getElementById("dataVisita").innerText =
+                "Data: " + dados.DATA;
+              document.getElementById("descricaoVisita").innerText =
                 "Descrição: " + dados.DESCRICAO;
             });
+          const resultado = resposta.json();
+          alert(resultado.mensagem);
 
           const linkEditVisita = document.getElementById("linkEditVisita");
           linkEditVisita.href = `editVisitas.html?id=${id}`;
