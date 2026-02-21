@@ -6,6 +6,25 @@ const nodemailer = require("nodemailer");
 const router = express.Router();
 const db = require("./db");
 
+//login
+router.post("/login", (req, res) => {
+  const { user, pass } = req.body;
+  const sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+
+  db.query(sql, [user, pass], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ mensagem: "Erro ao consultar usuário" });
+    }
+
+    if (results.length > 0) {
+      res.json({ mensagem: "Login bem-sucedido!" });
+    } else {
+      res.status(401).json({ mensagem: "Usuário ou senha inválidos" });
+    }
+  });
+});
+
 //pegar dados do banco para email
 router.get("/pegar-email/:id", (req, res) => {
   sql =
