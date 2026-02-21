@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/novoCad.css" />
   </head>
   <body>
-    <form action="" id="formNovaVisita">
+    <form action="" id="formEditVisita">
       <input type="hidden" name="pessoa_id" id="pessoaIdInput" />
 
       <div class="dataAssunto">
@@ -36,10 +36,20 @@
 
     <script>
       const params = new URLSearchParams(window.location.search);
-      const pessoaId = params.get("PESSOA_ID");
+      const id = params.get("id");
 
+      fetch(`/api/relatorio/${id}`)
+        .then((res) => res.json())
+        .then((dados) => {
+          document.getElementById("data").value = dados.DATA;
+          document.getElementById("assunto").value = dados.ASSUNTO;
+          document.getElementById("descricao").value = dados.DESCRICAO;
+        });
+        
+        const voltar = document.getElementById("voltar");
+          voltar.href = `detalhesCadGeral.html?id=${id}`;
     </script>
 
-    <script src="/js/novaVisita.js"></script>
+    <script src="/js/editVisita.js"></script>
   </body>
 </html>

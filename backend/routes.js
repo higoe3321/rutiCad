@@ -340,6 +340,27 @@ router.get("/relatorioCad/:id", (req, res) => {
 
 // editar
 
+//editar visita
+router.post("/editVisita", (req, res) => {
+  const { id, data, assunto, descricao } = req.body;
+
+  const sql = `
+    UPDATE visitas
+    SET DATA = ?, ASSUNTO = ?, DESCRICAO = ?
+    WHERE ID = ?
+  `;
+
+  const valores = [data, assunto, descricao, id];
+  db.query(sql, valores, (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ mensagem: "Erro ao salvar no banco" });
+    }
+
+    res.json({ mensagem: "Visita atualizada com sucesso!" });
+  });
+});
+
 //editar cadastro geral
 router.post("/editCadGeral", (req, res) => {
   const {
