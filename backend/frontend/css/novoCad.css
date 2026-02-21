@@ -96,7 +96,7 @@ textarea:focus {
 /* BOTÃO */
 .botao {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .btn {
