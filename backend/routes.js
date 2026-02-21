@@ -392,4 +392,62 @@ router.post("/editCadGeral", (req, res) => {
   });
 });
 
+//deletar cadastro geral
+router.delete("/cadastro-geral/:id", (req, res) => {
+  const pessoaId = req.params.id;
+
+  db.beginTransaction((err) => {
+    if (err) {
+      return res.status(500).json({ erro: "Erro ao iniciar transaction" });
+    }
+
+    // 1️⃣ apaga visitas relacionadas (se existir)
+    const sqlVisitas = "DELETE FROM visitas WHERE pessoa_id = ?";
+    db.query(sqlVisitas, [pessoaId], (err) => {
+      if (err) {
+        return db.rollback(() => {
+          res.status(500).json({ erro: "Erro ao excluir visitas" });
+        });
+      }
+
+      // 2️⃣ apaga cadastro geral
+      const sqlCad = "DELETE FROM cadgeral WHERE PESSOA_ID = ?";
+      db.query(sqlCad, [pessoaId], (err, result) => {
+        if (err) {
+          return db.rollback(() => {
+            res.status(500).json({ erro: "Erro ao excluir cadastro geral" });
+          });
+        }
+
+        if (result.affectedRows === 0) {
+          return db.rollback(() => {
+            res.status(404).json({ erro: "Cadastro não encontrado" });
+          });
+        }
+
+        // 3️⃣ apaga pessoa base
+        const sqlPessoa = "DELETE FROM pessoa WHERE id = ?";
+        db.query(sqlPessoa, [pessoaId], (err) => {
+          if (err) {
+            return db.rollback(() => {
+              res.status(500).json({ erro: "Erro ao excluir pessoa" });
+            });
+          }
+
+          // 4️⃣ commit final
+          db.commit((err) => {
+            if (err) {
+              return db.rollback(() => {
+                res.status(500).json({ erro: "Erro ao finalizar transaction" });
+              });
+            }
+
+            res.json({ mensagem: "Cadastro excluído com sucesso" });
+          });
+        });
+      });
+    });
+  });
+});
+
 module.exports = router;
