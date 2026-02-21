@@ -20,7 +20,7 @@ addEventListener("submit", async (e) => {
         alert(resultado.mensagem);
 
         if (resultado.sucesso) {
-            window.location.href = "/frontend/index.html";
+            window.location.href = "/index.html";
         } else {
             document.getElementById("login").reset();
         }
