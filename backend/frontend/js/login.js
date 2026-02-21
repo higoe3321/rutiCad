@@ -28,5 +28,5 @@ addEventListener("submit", async (e) => {
   document.getElementById("login").reset();
   
   localStorage.setItem("token", resultado.token);
-  window.location.href = "/dashboard.html";
+  window.location.href = "/index.html";
 });
