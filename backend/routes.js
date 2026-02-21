@@ -314,6 +314,7 @@ router.get("/relatorioCad/:id", (req, res) => {
   const sql = `
   SELECT 
     DATE_FORMAT(v.DATA, '%d/%m/%Y') AS DATA,
+    v.ID,
     v.ASSUNTO,
     v.DESCRICAO,
     c.NOME
