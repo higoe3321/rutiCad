@@ -13,6 +13,8 @@ document
 
     const dados = {
       id,
+        data: document.getElementById("data").value,
+        assunto: document.getElementById("assunto").value,
       descricao: document.getElementById("descricao").value,
     };
 
