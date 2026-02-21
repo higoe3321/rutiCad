@@ -283,33 +283,30 @@ router.get("/relatorio/lista", (req, res) => {
 
 // detalhes relatorio
 router.get("/relatorio/:id", (req, res) => {
-  const sql1 =
-    "SELECT DATE_FORMAT(v.DATA, '%d/%m/%Y') AS DATA, ASSUNTO, DESCRICAO, pessoa_id FROM visitas WHERE ID = ?";
+  const sql = `
+    SELECT 
+      DATE_FORMAT(v.DATA, '%d/%m/%Y') AS DATA,
+      v.ASSUNTO,
+      v.DESCRICAO,
+      c.NOME
+    FROM visitas v
+    JOIN cadgeral c ON c.PESSOA_ID = v.pessoa_id
+    WHERE v.ID = ?
+  `;
 
-  db.query(sql1, [req.params.id], (err, visitas) => {
-    if (err || visitas.length === 0) {
+  db.query(sql, [req.params.id], (err, results) => {
+    if (err || results.length === 0) {
+      console.error(err);
       return res.status(404).json({ mensagem: "Cadastro não encontrado" });
     }
 
-    const visita = visitas[0];
-    const pessoaId = visita.pessoa_id;
+    const visita = results[0];
 
-    // 2️⃣ buscar nome independente da tabela
-    const sql2 = `
-      SELECT NOME FROM cadgeral WHERE PESSOA_ID = ?
-    `;
-
-    db.query(sql2, [pessoaId], (err2, pessoa) => {
-      if (err2 || pessoa.length === 0) {
-        return res.status(404).json({ mensagem: "Pessoa não encontrada" });
-      }
-
-      res.json({
-        DATA: visita.DATA,
-        ASSUNTO: visita.ASSUNTO,
-        DESCRICAO: visita.DESCRICAO,
-        NOME: pessoa[0].NOME,
-      });
+    res.json({
+      DATA: visita.DATA,
+      ASSUNTO: visita.ASSUNTO,
+      DESCRICAO: visita.DESCRICAO,
+      NOME: visita.NOME,
     });
   });
 });
