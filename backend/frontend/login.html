@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="/css/login.css" />
   </head>
   <body>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1e1e1e" />
+
     <form id="login">
       <label for="user">Usuário</label>
       <input type="text" id="user" placeholder="Digite seu usuário" />
@@ -15,7 +18,11 @@
       <input type="password" id="pass" placeholder="Digite sua senha" />
       <button type="submit">Entrar</button>
     </form>
-
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js");
+      }
+    </script>
     <script src="/js/login.js"></script>
   </body>
 </html>
