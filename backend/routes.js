@@ -18,9 +18,9 @@ router.post("/login", (req, res) => {
     }
 
     if (results.length > 0) {
-      res.json({ mensagem: "Login bem-sucedido!" });
+      res.json({ mensagem: "Login bem-sucedido!", sucesso: true });
     } else {
-      res.status(401).json({ mensagem: "Usuário ou senha inválidos" });
+      res.status(401).json({ mensagem: "Usuário ou senha inválidos", sucesso: false });
     }
   });
 });

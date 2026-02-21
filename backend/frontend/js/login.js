@@ -19,6 +19,12 @@ addEventListener("submit", async (e) => {
         const resultado = await resposta.json();
         alert(resultado.mensagem);
 
+        if (resultado.sucesso) {
+            window.location.href = "/frontend/index.html";
+        } else {
+            document.getElementById("login").reset();
+        }
+
         document.getElementById("login").reset();
     });
 
