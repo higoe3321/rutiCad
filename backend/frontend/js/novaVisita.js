@@ -1,3 +1,8 @@
+if (!localStorage.getItem("token")) {
+    window.location.href = "/login.html";
+  }
+
+
 document
   .getElementById("formNovaVisita")
   .addEventListener("submit", async (e) => {

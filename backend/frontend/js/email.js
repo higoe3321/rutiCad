@@ -1,3 +1,8 @@
+if (!localStorage.getItem("token")) {
+    window.location.href = "/login.html";
+  }
+
+
 const form = document.getElementById("formEmail");
 
 const params = new URLSearchParams(window.location.search);

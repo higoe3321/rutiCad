@@ -1,3 +1,8 @@
+if (!localStorage.getItem("token")) {
+    window.location.href = "/login.html";
+  }
+
+
 async function carregarLista() {
   try {
     const resposta = await fetch(

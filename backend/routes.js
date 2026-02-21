@@ -10,21 +10,47 @@ const db = require("./db");
 //login
 router.post("/login", (req, res) => {
   const { user, pass } = req.body;
-  const sql = "SELECT * FROM acessos WHERE USUARIO = ? AND SENHA = ?";
 
-  db.query(sql, [user, pass], (err, results) => {
+  const sql = "SELECT * FROM acessos WHERE USUARIO = ?";
+
+  db.query(sql, [user], async (err, results) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ mensagem: "Erro ao consultar usuário" });
     }
 
-    if (results.length > 0) {
-      res.json({ mensagem: "Login bem-sucedido!", sucesso: true });
-    } else {
-      res
+    // Usuário não existe
+    if (results.length === 0) {
+      return res
         .status(401)
         .json({ mensagem: "Usuário ou senha inválidos", sucesso: false });
     }
+    const usuario = results[0];
+    // Verificar senha
+    const senhaCorreta = await bcrypt.compare(pass, usuario.SENHA);
+
+    if (!senhaCorreta) {
+      return res
+        .status(401)
+        .json({ mensagem: "Usuário ou senha inválidos", sucesso: false });
+    }
+
+    const token = jwt.sign(
+      {
+        id: usuario.ID,
+        nivel: usuario.NIVEL,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      },
+    );
+
+    res.json({
+      mensagem: "Login bem-sucedido!",
+      sucesso: true,
+      token,
+    });
   });
 });
 

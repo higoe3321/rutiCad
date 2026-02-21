@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/css/detalhesRelat.css">
+    <link rel="stylesheet" href="/css/detalhesRelat.css" />
   </head>
   <body>
     <div>
@@ -18,6 +18,10 @@
     <a href="index.html">Voltar</a>
 
     <script>
+      if (!localStorage.getItem("token")) {
+        window.location.href = "/login.html";
+      }
+
       const params = new URLSearchParams(window.location.search);
       const id = params.get("id");
 
@@ -32,8 +36,8 @@
             "Descrição: " + dados.DESCRICAO;
         });
 
-        const linkEditVisita = document.getElementById("linkEditVisita");
-        linkEditVisita.href = `editVisitas.html?id=${id}`;
+      const linkEditVisita = document.getElementById("linkEditVisita");
+      linkEditVisita.href = `editVisitas.html?id=${id}`;
     </script>
   </body>
 </html>

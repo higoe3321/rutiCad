@@ -1,3 +1,8 @@
+if (!localStorage.getItem("token")) {
+    window.location.href = "/login.html";
+  }
+
+
 let listaCompleta = [];
 
 async function carregarLista() {

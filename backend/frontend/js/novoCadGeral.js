@@ -1,3 +1,8 @@
+if (!localStorage.getItem("token")) {
+    window.location.href = "/login.html";
+  }
+
+
 document
   .getElementById("formCadGeral")
   .addEventListener("submit", async (e) => {
