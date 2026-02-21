@@ -103,7 +103,7 @@
         <h1>Assunto: ${visita.ASSUNTO}</h1>
         <p>Data: ${visita.DATA}</p>
         <p>Descrição: ${visita.DESCRICAO}</p>
-        <a href="/editar-visita/${visita.ID}">Editar</a>
+        <a href="/editVisitas/${visita.ID}">Editar</a>
         <hr>
       `;
 
@@ -113,9 +113,6 @@
             .catch((err) => {
               console.error(err);
             });
-
-          const linkEditVisita = document.getElementById("linkEditVisita");
-          linkEditVisita.href = `editVisitas.html?id=${id}`;
 
           const linkEditar = document.getElementById("linkEditar");
           linkEditar.href = `editarCadastroGeral.html?id=${id}`;
