@@ -41,13 +41,7 @@
       fetch(`/api/relatorio/${id}`)
         .then((res) => res.json())
         .then((dados) => {
-          if (dados.DATA) {
-            const dataFormatada = new Date(dados.DATA)
-              .toISOString()
-              .split("T")[0];
-
-            document.getElementById("data").value = dataFormatada;
-          }
+          document.getElementById("data").value = dados.DATA;
           document.getElementById("assunto").value = dados.ASSUNTO;
           document.getElementById("descricao").value = dados.DESCRICAO;
         });
