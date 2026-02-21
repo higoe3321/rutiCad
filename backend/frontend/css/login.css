@@ -1,0 +1,107 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* FUNDO */
+body {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e5e7eb;
+  padding: 20px;
+}
+
+/* FORM LOGIN */
+form#login {
+  width: 100%;
+  max-width: 420px;
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 32px;
+  display: grid;
+  gap: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* TÍTULO (opcional, se quiser adicionar depois) */
+form#login::before {
+  content: "Acesso ao Sistema";
+  font-size: 1.4rem;
+  color: #f8fafc;
+  font-weight: 600;
+  margin-bottom: 10px;
+  border-left: 4px solid #2563eb;
+  padding-left: 12px;
+}
+
+/* LABELS */
+label {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-bottom: 6px;
+}
+
+/* INPUTS */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder {
+  color: #6b7280;
+}
+
+input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.35);
+}
+
+/* BOTÃO */
+button {
+  margin-top: 10px;
+  background: #2563eb;
+  border: none;
+  color: #fff;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* RESPONSIVO */
+@media (max-width: 480px) {
+  form#login {
+    padding: 26px;
+  }
+
+  form#login::before {
+    font-size: 1.2rem;
+  }
+}
