@@ -262,7 +262,14 @@ router.post("/novaVisita", (req, res) => {
 
 //relatorio de visitas
 router.get("/relatorio/lista", (req, res) => {
-  const sql = "SELECT ID, DATE_FORMAT(v.DATA, '%d/%m/%Y') AS DATA, ASSUNTO FROM visitas ORDER BY DATA DESC";
+  const sql = `
+    SELECT 
+      ID, 
+      DATE_FORMAT(v.DATA, '%d/%m/%Y') AS DATA, 
+      ASSUNTO 
+    FROM visitas v
+    ORDER BY v.DATA DESC
+  `;
 
   db.query(sql, (err, results) => {
     if (err) {
