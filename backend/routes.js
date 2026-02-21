@@ -9,7 +9,7 @@ const db = require("./db");
 //login
 router.post("/login", (req, res) => {
   const { user, pass } = req.body;
-  const sql = "SELECT * FROM users WHERE USUARIO = ? AND SENHA = ?";
+  const sql = "SELECT * FROM acessos WHERE USUARIO = ? AND SENHA = ?";
 
   db.query(sql, [user, pass], (err, results) => {
     if (err) {
