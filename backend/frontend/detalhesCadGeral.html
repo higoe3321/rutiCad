@@ -24,10 +24,7 @@
       <p id="complemento"></p>
       <p id="descricao"></p>
 
-      <h1 id="assunto"></h1>
-      <p id="dataVisita"></p>
-      <p id="descricaoVisita"></p>
-      <a id="linkEditVisita">Editar</a>
+      <div id="visitasContainer"></div>
 
       <a id="linkNovaVisita" class="btn">Nova Visita</a>
       <a id="linkEditar" class="btn">Editar</a>
@@ -85,16 +82,37 @@
           //mostrar visitas
           fetch(`/api/relatorioCad/${id}`)
             .then((res) => res.json())
-            .then((dados) => {
-              document.getElementById("assunto").innerText =
-                "Assunto: " + dados.ASSUNTO;
-              document.getElementById("dataVisita").innerText =
-                "Data: " + dados.DATA;
-              document.getElementById("descricaoVisita").innerText =
-                "Descrição: " + dados.DESCRICAO;
+            .then((visitas) => {
+              const container = document.getElementById("visitasContainer");
+
+              // limpa o container
+              container.innerHTML = "";
+
+              // caso não tenha visitas
+              if (!visitas || visitas.length === 0) {
+                container.innerHTML = "<p>Nenhuma visita registrada.</p>";
+                return;
+              }
+
+              // cria um bloco para cada visita
+              visitas.forEach((visita) => {
+                const div = document.createElement("div");
+                div.classList.add("visita");
+
+                div.innerHTML = `
+        <h1>Assunto: ${visita.ASSUNTO}</h1>
+        <p>Data: ${visita.DATA}</p>
+        <p>Descrição: ${visita.DESCRICAO}</p>
+        <a href="/editar-visita/${visita.ID}">Editar</a>
+        <hr>
+      `;
+
+                container.appendChild(div);
+              });
+            })
+            .catch((err) => {
+              console.error(err);
             });
-          const resultado = resposta.json();
-          alert(resultado.mensagem);
 
           const linkEditVisita = document.getElementById("linkEditVisita");
           linkEditVisita.href = `editVisitas.html?id=${id}`;
