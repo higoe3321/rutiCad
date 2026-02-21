@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -31,7 +31,11 @@
         ></textarea>
       </div>
 
-      <button class="btn" type="submit">Enviar</button>
+      
+      <div class="botao">
+        <a id="voltar" class="btn">Voltar</a>
+        <button type="submit" class="btn">ATUALIZAR</button>
+      </div>
     </form>
 
     <script>
@@ -41,13 +45,19 @@
       fetch(`/api/relatorio/${id}`)
         .then((res) => res.json())
         .then((dados) => {
-          document.getElementById("data").value = dados.DATA;
+          function dataParaInput(dataBR) {
+            const [dia, mes, ano] = dataBR.split("/");
+            return `${ano}-${mes}-${dia}`;
+          }
+
+          document.getElementById("data").value = dataParaInput(dados.DATA);
+
           document.getElementById("assunto").value = dados.ASSUNTO;
           document.getElementById("descricao").value = dados.DESCRICAO;
         });
-        
-        const voltar = document.getElementById("voltar");
-          voltar.href = `detalhesCadGeral.html?id=${id}`;
+
+      const voltar = document.getElementById("voltar");
+      voltar.href = `detalhesCadGeral.html?id=${id}`;
     </script>
 
     <script src="/js/editVisita.js"></script>
