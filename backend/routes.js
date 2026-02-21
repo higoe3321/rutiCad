@@ -21,23 +21,32 @@ router.post("/login", (req, res) => {
     if (results.length > 0) {
       res.json({ mensagem: "Login bem-sucedido!", sucesso: true });
     } else {
-      res.status(401).json({ mensagem: "Usuário ou senha inválidos", sucesso: false });
+      res
+        .status(401)
+        .json({ mensagem: "Usuário ou senha inválidos", sucesso: false });
     }
   });
 });
 
 //novo acesso
-router.post("/novoAcesso", (req, res) => {
+router.post("/novoAcesso", async (req, res) => {
   const { usuario, senha, nivel } = req.body;
-  const sql = "INSERT INTO acessos (USUARIO, SENHA, NIVEL) VALUES (?, ?, ?)";
 
-  db.query(sql, [usuario, senha, nivel], (err) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ mensagem: "Erro ao criar novo acesso" });
-    }
-    res.json({ mensagem: "Novo acesso criado com sucesso!" });
-  });
+  try {
+    const senhaHash = await bcrypt.hash(senha, 10);
+    const sql = "INSERT INTO acessos (USUARIO, SENHA, NIVEL) VALUES (?, ?, ?)";
+
+    db.query(sql, [usuario, senhaHash, nivel], (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ mensagem: "Erro ao criar novo acesso" });
+      }
+      res.json({ mensagem: "Novo acesso criado com sucesso!" });
+    });
+  } catch (err) {
+    console.error("Erro ao criar novo acesso:", err);
+    res.status(500).json({ mensagem: "Erro ao criar novo acesso" });
+  }
 });
 
 //pegar dados do banco para email
