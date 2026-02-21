@@ -83,7 +83,7 @@
             "Descrição: " + dados.DESCRICAO;
 
           //mostrar visitas
-          fetch(`/api/relatorio/${id}`)
+          fetch(`/api/relatorioCad/${id}`)
             .then((res) => res.json())
             .then((dados) => {
               document.getElementById("assunto").innerText =
