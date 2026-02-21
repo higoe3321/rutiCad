@@ -17,7 +17,6 @@ addEventListener("submit", async (e) => {
     body: JSON.stringify(dados),
   });
   const resultado = await resposta.json();
-  alert(resultado.mensagem);
 
   if (resultado.sucesso) {
     window.location.href = "/index.html";
