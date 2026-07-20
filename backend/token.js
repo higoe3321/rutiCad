@@ -15,5 +15,5 @@ const authUrl = oAuth2Client.generateAuthUrl({
   prompt: "consent",
 });
 
-console.log("Abra essa URL:");
+console.log("Abra essa URL no navegador:");
 console.log(authUrl);
